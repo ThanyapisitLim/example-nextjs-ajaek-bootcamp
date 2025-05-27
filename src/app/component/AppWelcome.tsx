@@ -11,7 +11,7 @@ export default function AppWelcome() {
   return (
     <div>
       <p>{title.toUpperCase()}</p>
-      <button onClick={handleClick}>กดได้เลย!</button>
+      <button className="bg-blue-700 p-3 m-3 text-white rounded-lg" onClick={handleClick}>กดได้เลย!</button>
       {currebtYear}
       {
         isShow && <p>Date: 10/10/1998</p>
