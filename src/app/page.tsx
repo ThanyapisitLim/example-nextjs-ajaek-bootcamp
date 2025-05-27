@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div>
       <h1>Page</h1>
-      <AppWelcome />
+      <AppWelcome headTitle="Big SWU" isShow={true}/>
     </div>
   );
 }
