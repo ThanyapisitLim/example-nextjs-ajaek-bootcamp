@@ -1,14 +1,18 @@
 'use client'
 
+import { useState } from "react"
+
 type AppWelcomeProps = {
   headTitle:string
   isShow:boolean
 }
 
 export default function AppWelcome({headTitle,isShow}:AppWelcomeProps,) {
-  const title = 'Welcome COSCI'
+  const [title,setTitle] = useState('Welcome to COSCI')
   const currentYear = <p>2025</p>
+
   const handleClick = () => {
+    setTitle('Welcome to SWU');
     alert('Hello Typescipt');
   }
 
