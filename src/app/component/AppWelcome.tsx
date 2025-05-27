@@ -7,7 +7,7 @@ type AppWelcomeProps = {
 
 export default function AppWelcome({headTitle,isShow}:AppWelcomeProps,) {
   const title = 'Welcome COSCI'
-  const currebtYear = <p>2025</p>
+  const currentYear = <p>2025</p>
   const handleClick = () => {
     alert('Hello Typescipt');
   }
@@ -17,7 +17,7 @@ export default function AppWelcome({headTitle,isShow}:AppWelcomeProps,) {
       <h1>{headTitle}</h1>
       <p>{title.toUpperCase()}</p>
       <button className="bg-blue-700 p-3 m-3 text-white rounded-lg" onClick={handleClick}>กดได้เลย!</button>
-      {currebtYear}
+      {currentYear}
       {
         isShow && <p>Date: 10/10/1998</p>
       }
