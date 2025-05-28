@@ -20,9 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${k2d.className}`}
-      >
+      <body className={`${k2d.className}`}>
+        <h1>Header</h1>
+        <hr />
         {children}
       </body>
     </html>
