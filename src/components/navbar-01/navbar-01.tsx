@@ -5,7 +5,7 @@ import { NavigationSheet } from "./navigation-sheet";
 
 const Navbar01Page = () => {
   return (
-    <div className="min-h-screen bg-muted">
+    <div className="bg-muted">
       <nav className="h-16 bg-background border-b">
         <div className="h-full flex items-center justify-between max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <Logo />
