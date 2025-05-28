@@ -23,7 +23,7 @@ const Navbar01Page = () => {
             </Link>
 
             {/* ปุ่ม Get Started */}
-            <Link href="/get-started">
+            <Link href="/signup">
               <Button>Sign up</Button>
             </Link>
 
