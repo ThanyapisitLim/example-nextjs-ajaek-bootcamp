@@ -8,11 +8,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import db from "@/db";
 import { ChevronRight } from "lucide-react";
 
-const Blog02Page = () => {
+const Blog02Page = async() => {
+  const products = await db.query.product.findMany()
   return (
     <div className="max-w-screen-xl mx-auto py-16 px-6 xl:px-0">
+      <p>{JSON.stringify(products)}</p>
       <div className="flex items-end justify-between">
         <h2 className="text-3xl font-bold tracking-tight">Posts</h2>
         <Select defaultValue="recommended">
