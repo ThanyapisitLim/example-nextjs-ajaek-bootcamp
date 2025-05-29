@@ -3,10 +3,11 @@
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useCartStore } from "@/lib/cart-store";
-import { clear } from "console";
 import { Trash } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function CartList() {
+    const router = useRouter()
     const items = useCartStore((state) => state.items)
     const removeItem = useCartStore((state) => state.removeItem)
     const clearCart = useCartStore((state) => state.clearCart)
@@ -54,7 +55,12 @@ export default function CartList() {
                     Total : {totalPrice.toFixed(2)}
                 </div>
                 <div className="mt-5">
-                    <Button onClick={() => {clearCart()}}>Clear Cart</Button>
+                    <Button onClick={() => { clearCart() }}>Clear Cart</Button>
+                </div>
+                <div className="mt-5">
+                    <Button onClick={() => {
+                        router.replace('/product')
+                    }}>Confirm</Button>
                 </div>
             </div>
         </div>
