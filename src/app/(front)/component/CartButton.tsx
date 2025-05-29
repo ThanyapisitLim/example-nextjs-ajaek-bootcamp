@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-'user client'
+'use client'
 import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/lib/cart-store";
 import { ChevronRight } from "lucide-react";
