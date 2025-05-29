@@ -1,7 +1,9 @@
+import CartList from "../component/CartList";
+
 export default function Page() {
   return (
     <>
-    <p>hello cart</p>
+        <CartList />
     </>
   );
 }
