@@ -59,6 +59,7 @@ export default function CartList() {
                 </div>
                 <div className="mt-5">
                     <Button onClick={() => {
+                        clearCart()
                         router.replace('/product')
                     }}>Confirm</Button>
                 </div>
