@@ -9,11 +9,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import db from "@/db";
-// import { product } from '@/db/schema'
+import { product } from "@/db/schema";
+import { desc } from "drizzle-orm";
 import { ChevronRight } from "lucide-react";
 
 const Blog02Page = async() => {
-  const products = await db.query.product.findMany()
+  const products = await db.query.product.findMany({
+    orderBy: [desc(product.price)]
+  })
   return (
     <div className="max-w-screen-xl mx-auto py-16 px-6 xl:px-0">
       <div className="flex items-end justify-between">
