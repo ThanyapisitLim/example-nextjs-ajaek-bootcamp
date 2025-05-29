@@ -9,6 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import db from "@/db";
+// import { product } from '@/db/schema'
 import { ChevronRight } from "lucide-react";
 
 const Blog02Page = async() => {
