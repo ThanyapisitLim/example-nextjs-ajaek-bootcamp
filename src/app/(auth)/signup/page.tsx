@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client"; //import the auth client
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -15,24 +16,48 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
+  name: z.string().min(1,'require'),
   email: z.string().email(),
   password: z.string().min(8, "Password must be at least 8 characters long"),
 });
 
 const SignUp03Page = () => {
+  const router = useRouter()
   const form = useForm<z.infer<typeof formSchema>>({
     defaultValues: {
+      name: "",
       email: "",
       password: "",
     },
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
+  const onSubmit = async (form: z.infer<typeof formSchema>) => {
+    await authClient.signUp.email({
+      name: form.name,
+      email: form.email,
+      password: form.password,
+    }, {
+      onRequest: (ctx) => {
+        //show loading
+        console.log(ctx.body)
+      },
+      onSuccess: (ctx) => {
+        //redirect to the dashboard or sign in page
+        console.log(ctx.data)
+        router.replace('/')
+      },
+      onError: (ctx) => {
+        // display the error message
+        alert(ctx.error.message);
+      },
+    });
   };
+
+
 
   return (
     <div className="h-screen flex items-center justify-center">
@@ -43,13 +68,31 @@ const SignUp03Page = () => {
             Sign up for Shadcn UI Blocks
           </p>
 
-            <Separator className="m-5"/>
+          <Separator className="m-5" />
 
           <Form {...form}>
             <form
               className="w-full space-y-4"
               onSubmit={form.handleSubmit(onSubmit)}
             >
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Name</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="text"
+                        placeholder="Your Name"
+                        className="w-full"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <FormField
                 control={form.control}
                 name="email"
