@@ -1,14 +1,4 @@
-import { mysqlTable, primaryKey, int, varchar, decimal, text, timestamp, boolean} from "drizzle-orm/mysql-core"
-import { sql } from "drizzle-orm"
-
-export const product = mysqlTable("product", {
-	id: int({ unsigned: true }).autoincrement().notNull(),
-	title: varchar({ length: 255 }).notNull(),
-	price: decimal({ precision: 10, scale: 2 }).notNull(),
-},
-(table) => [
-	primaryKey({ columns: [table.id], name: "product_id"}),
-]);
+import { mysqlTable, varchar, text, timestamp, boolean, int } from "drizzle-orm/mysql-core";
 
 export const user = mysqlTable("user", {
 					id: varchar('id', { length: 36 }).primaryKey(),
@@ -55,4 +45,3 @@ export const verification = mysqlTable("verification", {
  createdAt: timestamp('created_at').$defaultFn(() => /* @__PURE__ */ new Date()),
  updatedAt: timestamp('updated_at').$defaultFn(() => /* @__PURE__ */ new Date())
 				});
-
