@@ -6,8 +6,14 @@ import { NavigationSheet } from "./navigation-sheet";
 import { ShoppingBasket } from "lucide-react";
 import { Badge } from "../ui/badge";
 import CountCartItem from "@/app/(front)/component/CountCartItem";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
-const Navbar01Page = () => {
+const Navbar01Page = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers()
+  })
+
   return (
     <div className="bg-muted">
       <nav className="h-16 bg-background border-b">
@@ -21,17 +27,37 @@ const Navbar01Page = () => {
             <Link href="/cart">
               <Badge className="p-2 text-sm"><CountCartItem /> <ShoppingBasket /> </Badge>
             </Link>
-            {/* ปุ่ม Sign In */}
-            <Link href="/login">
-              <Button variant="outline" className="hidden sm:inline-flex">
-                Login
-              </Button>
-            </Link>
 
-            {/* ปุ่ม Get Started */}
-            <Link href="/signup">
-              <Button>Sign up</Button>
-            </Link>
+
+            {
+              !session && (
+                <>
+                  {/* ปุ่ม Sign In */}
+                  <Link href="/login">
+                    <Button variant="outline" className="hidden sm:inline-flex">
+                      Login
+                    </Button>
+                  </Link>
+                  {/* ปุ่ม Get Started */}
+                  <Link href="/signup">
+                    <Button>Sign up</Button>
+                  </Link>
+                </>
+              )
+            }
+
+            {
+              session && (
+                <>
+                <div className="flex item-center">
+                  Hello, {session.user.name}
+                </div>
+                  <Link href="/dashboard">
+                    <Button>Dashboard</Button>
+                  </Link>
+                </>
+              )
+            }
 
             {/* Mobile Menu */}
             <div className="md:hidden">
